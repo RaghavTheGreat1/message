@@ -21,6 +21,14 @@ abstract class AppTheme {
           headline6: TextStyle(color: AppColors.textDark),
         ),
         iconTheme: const IconThemeData(color: AppColors.iconDark),
+        appBarTheme: const AppBarTheme(
+          centerTitle: true,
+          titleTextStyle: TextStyle(
+            fontWeight: FontWeight.bold,
+            fontSize: 16.0,
+            color: AppColors.textDark,
+          ),
+        ),
       );
 
   /// Dark theme and its settings.
@@ -37,5 +45,13 @@ abstract class AppTheme {
           headline6: TextStyle(color: AppColors.textLigth),
         ),
         iconTheme: const IconThemeData(color: AppColors.iconLight),
+        appBarTheme: const AppBarTheme(
+          centerTitle: true,
+          titleTextStyle: TextStyle(
+            fontWeight: FontWeight.bold,
+            fontSize: 16.0,
+            color: AppColors.textLigth,
+          ),
+        ),
       );
 }

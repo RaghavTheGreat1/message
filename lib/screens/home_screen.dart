@@ -14,11 +14,32 @@ class HomeScreen extends StatelessWidget {
     CallsScreen(),
     ContactsScreen(),
   ];
+
+  static const List<String> screenTitle = [
+    'Messages',
+    'Notifications',
+    'Calls',
+    'Contacts',
+  ];
   final ValueNotifier<int> currentIndex = ValueNotifier(0);
+  final ValueNotifier<String> currentScreenTitle = ValueNotifier('Messages');
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        backgroundColor: Colors.transparent,
+        elevation: 0,
+        title: ValueListenableBuilder<String>(
+          valueListenable: currentScreenTitle,
+          builder: (context, String title, _) {
+            print(title);
+            return Text(
+              title,
+            );
+          },
+        ),
+      ),
       body: ValueListenableBuilder<int>(
         valueListenable: currentIndex,
         builder: (BuildContext context, int value, _) {
@@ -27,6 +48,7 @@ class HomeScreen extends StatelessWidget {
       ),
       bottomNavigationBar: BottomNavigation(
         onItemSelected: (int value) {
+          currentScreenTitle.value = screenTitle[value];
           currentIndex.value = value;
         },
       ),
@@ -51,8 +73,8 @@ class _BottomNavigationState extends State<BottomNavigation> {
   void handleItemSelected(int index) {
     setState(() {
       selectedIndex = index;
+      widget.onItemSelected(index);
     });
-    widget.onItemSelected;
   }
 
   @override
@@ -89,7 +111,7 @@ class _BottomNavigationState extends State<BottomNavigation> {
             icon: CupertinoIcons.person_2_fill,
             label: "Contacts",
             isSelected: selectedIndex == 3,
-            onTap: widget.onItemSelected,
+            onTap: handleItemSelected,
           ),
         ],
       ),
