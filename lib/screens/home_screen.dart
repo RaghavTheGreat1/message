@@ -1,10 +1,13 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:message/helpers/random_image.dart';
 import 'package:message/screens/calls_screen.dart';
 import 'package:message/screens/contacts_screen.dart';
 import 'package:message/screens/messages_screen.dart';
 import 'package:message/screens/notifications_screen.dart';
 import 'package:message/themes/colors.dart';
+import 'package:message/widgets/avatar.dart';
+import 'package:message/widgets/icon_buttons.dart';
 
 class HomeScreen extends StatelessWidget {
   HomeScreen({Key? key}) : super(key: key);
@@ -29,11 +32,25 @@ class HomeScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.transparent,
+        leading: Align(
+          alignment: Alignment.centerRight,
+          child: IconBackground(
+            icon: Icons.search,
+            onTap: () {},
+          ),
+        ),
+        actions: [
+          Padding(
+            padding: const EdgeInsets.only(right: 24.0),
+            child: Avatar.small(
+              url: Helpers.randomPictureUrl(),
+            ),
+          ),
+        ],
         elevation: 0,
         title: ValueListenableBuilder<String>(
           valueListenable: currentScreenTitle,
           builder: (context, String title, _) {
-            print(title);
             return Text(
               title,
             );
