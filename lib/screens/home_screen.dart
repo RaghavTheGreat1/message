@@ -7,6 +7,7 @@ import 'package:message/screens/messages_screen.dart';
 import 'package:message/screens/notifications_screen.dart';
 import 'package:message/themes/colors.dart';
 import 'package:message/widgets/avatar.dart';
+import 'package:message/widgets/glowing_action_button.dart';
 import 'package:message/widgets/icon_buttons.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -116,6 +117,14 @@ class _BottomNavigationState extends State<BottomNavigation> {
             isSelected: selectedIndex == 1,
             onTap: handleItemSelected,
           ),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 8.0),
+            child: GlowingActionButton(
+              color: AppColors.secondary,
+              icon: CupertinoIcons.add,
+              onPressed: () {},
+            ),
+          ),
           BottomNavigationItem(
             index: 2,
             icon: CupertinoIcons.phone_fill,
@@ -161,25 +170,29 @@ class BottomNavigationItem extends StatelessWidget {
       },
       child: Padding(
         padding: const EdgeInsets.only(top: 12.0, bottom: 16),
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            Icon(
-              icon,
-              size: 24,
-              color: isSelected ? AppColors.secondary : null,
-            ),
-            const SizedBox(
-              height: 4,
-            ),
-            Text(
-              label,
-              style: TextStyle(
+        child: SizedBox(
+          width: 75,
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              Icon(
+                icon,
+                size: 24,
                 color: isSelected ? AppColors.secondary : null,
               ),
-            ),
-          ],
+              const SizedBox(
+                height: 4,
+              ),
+              Text(
+                label,
+                style: TextStyle(
+                  color: isSelected ? AppColors.secondary : null,
+                  fontSize: 12,
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );
